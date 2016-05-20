@@ -71,6 +71,25 @@ emacs_function_callback (emacs_env *e, ptrdiff_t nargs, emacs_value args[], void
 }
 
 CAMLprim value
+stub_make_global_ref (value e, value v)
+{
+  CAMLparam2 (e, v);
+  CAMLlocal1 (ev);
+  emacs_env *env = (emacs_env *) e;
+  ev = alloc_emacs_value (env->make_global_ref (env, Emacs_value_val (v)));
+  CAMLreturn (ev);
+}
+
+CAMLprim value
+stub_free_global_ref (value e, value v)
+{
+  CAMLparam2 (e, v);
+  emacs_env *env = (emacs_env *) e;
+  env->free_global_ref (env, Emacs_value_val (v));
+  CAMLreturn (Val_unit);
+}
+
+CAMLprim value
 stub_make_function (value e, value min_arity, value max_arity, value f, value doc)
 {
   CAMLparam5 (e, min_arity, max_arity, f, doc);

@@ -1,6 +1,8 @@
 type env
 type value
 
+external make_global_ref: env -> value -> value = "stub_make_global_ref"
+external free_global_ref: env -> value -> unit = "stub_free_global_ref"
 external make_function: env -> int -> int -> (env -> value list -> value) -> string -> value = "stub_make_function"
 external funcall: env -> value -> value list -> value = "stub_funcall"
 external intern: env -> string -> value = "stub_intern"

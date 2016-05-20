@@ -1,6 +1,8 @@
 type env
 type value
 
+val make_global_ref: env -> value -> value
+val free_global_ref: env -> value -> unit
 val make_function: env -> int -> int -> (env -> value list -> value) -> string -> value
 val funcall: env -> value -> value list -> value
 val intern: env -> string -> value
